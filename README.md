@@ -2,6 +2,7 @@
 Chat app with React js, Express, and pusher chatkit API
     
 Approach Taken
+
     Start with a chat API then work outward from there. Appending a translator API. Then further customizing...
 
 Technologies used
