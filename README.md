@@ -11,5 +11,5 @@ Technologies used
 
 Installation Instructions
 
-    root folder: npm install express body-parser cors dotenv @pusher/chatkit-server --save 
+    root folder: npm install aws-sdk express body-parser cors dotenv @pusher/chatkit-server --save 
     client folder: npm install @pusher/chatkit-client axios prop-types skeleton-css date-fns --save 
