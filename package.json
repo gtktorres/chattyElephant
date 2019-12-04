@@ -12,11 +12,8 @@
   "dependencies": {
     "@pusher/chatkit-client": "^1.13.2",
     "@pusher/chatkit-server": "^2.2.0",
-<<<<<<< HEAD
+    "aws-sdk": "^2.582.0",
     "axios": "^0.19.0",
-=======
-    "aws-sdk": "^2.580.0",
->>>>>>> 173cf111a93d55d2e75cf51b80a1d33993a78405
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "date-fns": "^2.8.1",

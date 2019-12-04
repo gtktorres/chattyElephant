@@ -6,6 +6,7 @@ import {
   connectToChatkit,
   sendMessage,
   sendDM,
+  updateLanguage,
 } from './methods';
 import Dialog from './components/Dialog';
 import RoomList from './components/RoomList';
@@ -30,6 +31,7 @@ import RoomUsers from './components/RoomUsers';
           roomName: null,
           messages: [],
           newMessage: '',
+          language: 'en',
         };
 
         this.handleInput = handleInput.bind(this);
@@ -37,7 +39,7 @@ import RoomUsers from './components/RoomUsers';
         this.connectToRoom = connectToRoom.bind(this);
         this.sendMessage = sendMessage.bind(this);
         this.sendDM = sendDM.bind(this);
-
+        this.updateLanguage = updateLanguage.bind(this);  
       }
 
       render() {
@@ -51,6 +53,7 @@ import RoomUsers from './components/RoomUsers';
           newMessage,
           roomUsers,
           roomName,
+          language,
         } = this.state;
 
         return (
@@ -64,12 +67,12 @@ import RoomUsers from './components/RoomUsers';
               ) : null}
 
             {currentRoom ? (
-                <RoomList
+               <RoomList
                   rooms={rooms}
                   currentRoom={currentRoom}
                   connectToRoom={this.connectToRoom}
                   currentUser={currentUser}
-                />
+              />
               ) : null}
             </aside>
             <section className="chat-screen">
@@ -102,11 +105,24 @@ import RoomUsers from './components/RoomUsers';
               ) : null}
 
             {currentRoom ? (
-                <RoomUsers
+                /*<RoomUsers
                   currentUser={currentUser}
                   sendDM={this.sendDM}
                   roomUsers={roomUsers}
-                />
+                />*/
+                <select
+                id="language"
+                className="language"
+                name="language"
+                value={language}
+                onChange={this.updateLanguage}
+              >
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+              </select>
+                
               ) : null}
             </aside>
           </div>

@@ -22,9 +22,10 @@ function connectToRoom(id = 'cce93be1-ae14-44a9-b6f7-29fed8921869') {
         messageLimit: 100,
         hooks: {
             onMessage: message => {
-                this.setState({
+                translateText.call(this,message);
+                /*this.setState({
                   messages: [...this.state.messages, message],
-                });
+                });*/
         },
         onPresenceChanged: () => {
             const { currentRoom } = this.state;
@@ -158,4 +159,48 @@ function createPrivateRoom(id) {
     });
   }
 
-export { handleInput, connectToRoom, connectToChatkit, sendMessage, sendDM }
+  function updateLanguage(event) {
+    const { value } = event.target;
+    const { messages } = this.state;
+    this.setState({
+      language: value,
+    },
+    () => {
+      messages.forEach(message => {
+        translateText.call(this.message);
+      });
+    });
+  }
+
+  function translateText(message) {
+    const { language, messages } = this.state;
+    const { text, id } = message;
+    axios
+      .post('http://localhost:5200/translate', {
+        text,
+        lang: language,
+      })
+      .then(response => {
+        const index = messages.findIndex(item => item.id === id);
+        const msg = {
+          ...message,
+          text: response.data.TranslatedText,
+        };
+
+        if (index !== -1) {
+          messages.splice(index, 1, msg);
+        } else {
+          messages.push(msg);
+        }
+
+        this.setState({
+          messages: messages.sort((a, b) => {
+            return new Date(a.createdAt) - new Date(b.createdAt);
+          }),
+        });
+      })
+      .catch(console.error)
+  }
+  
+
+export { handleInput, updateLanguage, connectToRoom, connectToChatkit, sendMessage, sendDM }
