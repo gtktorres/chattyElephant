@@ -18,7 +18,7 @@
     "cors": "^2.8.5",
     "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "prop-types": "^15.7.2",
     "skeleton-css": "^2.0.4"
   }
